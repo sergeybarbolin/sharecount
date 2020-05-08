@@ -1,12 +1,24 @@
 import React from 'react';
-import './App.scss';
+import { makeStyles } from '@material-ui/core/styles';
+
+import { Navbar } from './components/Navbar';
+import { Main } from './pages/Main';
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        backgroundColor: theme.palette.background.default,
+        height: '100vh'
+    }
+}));
 
 function App() {
-  return (
-    <div className="App">
-      <h1 className="title is-1">sharecount</h1>
-    </div>
-  );
+    const styles = useStyles();
+    return (
+        <div className={styles.root}>
+            <Navbar/>
+            <Main />
+        </div>
+    );
 }
 
 export default App;
