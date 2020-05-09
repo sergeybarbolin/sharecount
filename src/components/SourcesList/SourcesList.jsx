@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { List, ListItem, ListSubheader, Paper } from '@material-ui/core';
 
+import { getSourcesRequest } from './../../redux/sources/actions';
 import { SourceLabel } from '../SourceLabel';
-import sources from './../../sources.json';
 
-export const SourcesList = () => {
+export const SourcesList = (props) => {
+    console.log(props);
+    useEffect(() => {
+        props.getSourcesRequest();
+    }, [])
     return (
         <Paper variant="outlined">
             <List 
@@ -15,7 +20,7 @@ export const SourcesList = () => {
                 }
             >
                 {
-                    [...sources]
+                    [...props.sources]
                     .sort((a, b) => {
                         if (a.title > b.title) {
                             return 1;
@@ -35,3 +40,5 @@ export const SourcesList = () => {
         </Paper>
     )
 }
+
+export const SourcesListContainer = connect(state => state.sources, { getSourcesRequest })(SourcesList)

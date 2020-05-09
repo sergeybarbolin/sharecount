@@ -1,0 +1,2 @@
+export const GET_SOURCES_REQUEST = '/sources/GET_SOURCES_REQUEST';
+export const GET_SOURCES_SUCCESS = '/sources/GET_SOURCES_SUCCESS';

@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme => ({
 
 function App() {
     const styles = useStyles();
+
     return (
         <div className={styles.root}>
             <Navbar/>
