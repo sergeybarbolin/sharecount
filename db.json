@@ -1,0 +1,70 @@
+{
+  "sources": [
+      {
+          "_id": "5eb57bdc05e8a2b7f585c1fb",
+          "title": "BBC News Русская служба",
+          "url": "https://www.bbc.com/russian",
+          "imgUrl": "https://www.bbc.com/favicon.ico"
+      },
+      {
+          "_id": "5eb57bdc6c0372e5b723a45d",
+          "title": "Риа новости",
+          "url": "https://ria.ru/",
+          "imgUrl": "https://cdn22.img.ria.ru/i/favicons/apple-touch-icon-57x57.png"
+      },
+      {
+          "_id": "5eb57bdcfe8f8e7b9da9a7e2",
+          "title": "Газета.Ру",
+          "url": "https://www.gazeta.ru/",
+          "imgUrl": "https://static.gazeta.ru/nm2012/i/favicon.ico"
+      },
+      {
+          "_id": "5eb57bdce19a033e5f7d8360",
+          "title": "ТААС",
+          "url": "https://tass.ru/",
+          "imgUrl": "https://tass.ru/img/blocks/common/apple-touch-icon.png"
+      },
+      {
+          "_id": "5eb57bdcd843a65bebdab4c2",
+          "title": "RT на русском",
+          "url": "https://russian.rt.com/",
+          "imgUrl": "https://russian.rt.com/static/blocks/touch-icon/apple-touch-icon-precomposed.png"
+      },
+      {
+          "_id": "5eb57bdca2d2fcc1ae1b7092",
+          "title": "РБК",
+          "url": "https://www.rbc.ru/",
+          "imgUrl": "https://s.rbk.ru/v10_rbcnews_static/common/common-10.3.5/images/favicon.png"
+      },
+      {
+          "_id": "5eb57bdcd0ce5999c19133b9",
+          "title": "Ведомости",
+          "url": "https://www.vedomosti.ru/",
+          "imgUrl": "https://www.vedomosti.ru/icons/favicon-32x32.png"
+      },
+      {
+          "_id": "5eb57bdc075456d02f1d6c60",
+          "title": "Lenta.ru",
+          "url": "https://lenta.ru/",
+          "imgUrl": "https://icdn.lenta.ru/lenta_touch.png"
+      },
+      {
+          "_id": "5eb57bdc7b43ab8765ec2176",
+          "title": "Дождь",
+          "url": "https://tvrain.ru/",
+          "imgUrl": "https://s79369.cdn.ngenix.net/static/favicons/apple-touch-icon-60x60.png"
+      },
+      {
+          "_id": "5eb57bdc552f719aa079326c",
+          "title": "Медуза",
+          "url": "https://meduza.io/",
+          "imgUrl": "https://meduza.io/favicon-32.png"
+      },
+      {
+          "_id": "5eb57bdc2bf3f97f643d3dc8",
+          "title": "Эхо Москвы",
+          "url": "https://echo.msk.ru/",
+          "imgUrl": "https://echo.msk.ru/i/icons/apple-icon-60x60.png"
+      }
+  ]
+}
