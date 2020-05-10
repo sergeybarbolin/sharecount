@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, Container } from '@material-ui/core';
 
 import { ArticllesTable } from '../../components/ArticlesTable';
-import { SourcesListContainer } from '../../components/SourcesList';
+import { SourcesListContainer } from '../../containers';
 
 export const Main = () => (
     <Container>
