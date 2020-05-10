@@ -1,38 +1,59 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { List, ListItem, ListSubheader, Paper } from '@material-ui/core';
-
-import { getSourcesRequest } from './../../redux/sources/actions';
+import React from 'react';
+import { 
+    List, 
+    ListItem, 
+    ListSubheader, 
+    Paper, 
+    IconButton, 
+    ListItemSecondaryAction 
+} from '@material-ui/core';
+import { CheckBox, CheckBoxOutlineBlank } from '@material-ui/icons';
 import { SourceLabel } from '../SourceLabel';
 
 export const SourcesList = (props) => {
-    console.log(props);
-    useEffect(() => {
-        props.getSourcesRequest();
-    }, [])
+    const { 
+        sources, 
+        modeDisableAll, 
+        isLoading, 
+        labelClickHandler, 
+        selectAllHandler 
+    } = props;
+
     return (
         <Paper variant="outlined">
             <List 
                 component="nav" 
                 aria-label="sourses"
                 subheader={
-                    <ListSubheader component="div" id="sourses-list-subheader">Источники</ListSubheader>
+                    <ListSubheader component="div" id="sourses-list-subheader">
+                        Источники
+                        
+                        { !isLoading && 
+                            <ListItemSecondaryAction>
+                                <IconButton 
+                                    size="small" 
+                                    aria-label="Выбрать все все"
+                                    onClick={ selectAllHandler }
+                                >
+                                    { modeDisableAll 
+                                        ? <CheckBox color="primary" /> 
+                                        : <CheckBoxOutlineBlank />
+                                    }
+                                </IconButton>
+                            </ListItemSecondaryAction>
+                        }
+                    </ListSubheader>
                 }
             >
                 {
-                    [...props.sources]
-                    .sort((a, b) => {
-                        if (a.title > b.title) {
-                            return 1;
-                        }
-                        if (a.title < b.title) {
-                            return -1;
-                        }
-                        return 0;
-                    })
-                    .map(({ title, _id, imgUrl }) => (
-                        <ListItem key={_id} selected={_id === '5eb57bdcfe8f8e7b9da9a7e2'} button={_id !== '5eb57bdcfe8f8e7b9da9a7e2'}>
-                            <SourceLabel title={title} imgUrl={imgUrl} />
+                    [...sources]
+                    .map((item, index) => (
+                        <ListItem 
+                            key={isLoading ? index : item._id}
+                            onClick={() => { !isLoading && labelClickHandler(item._id) }}
+                            button
+                        >
+                            <SourceLabel isLoading={isLoading} {...item} />
                         </ListItem>
                     ))
                 }
@@ -40,5 +61,3 @@ export const SourcesList = (props) => {
         </Paper>
     )
 }
-
-export const SourcesListContainer = connect(state => state.sources, { getSourcesRequest })(SourcesList)
