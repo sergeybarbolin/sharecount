@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Container } from '@material-ui/core';
 
-import { ArticllesTable } from '../../components/ArticlesTable';
+import { PagesTable } from '../../components/PagesTable';
 import { SourcesListContainer } from '../../containers';
 
 export const Main = () => (
@@ -11,7 +11,7 @@ export const Main = () => (
                 <SourcesListContainer />
             </Grid>
             <Grid item xs={9}>
-                <ArticllesTable />
+                <PagesTable />
             </Grid>
         </Grid>
     </Container>

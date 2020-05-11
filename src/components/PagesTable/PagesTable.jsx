@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip } from '@material-ui/core';
+import { getPagesRequest } from './../../redux/pages/actions';
 
 const columns = [
     { 
-        id: 'source', 
+        id: 'owner', 
         label: 'Источник', 
     },
     {
-        id: 'pageTitle',
+        id: 'title',
         label: 'Страница'
     },
     {
@@ -29,45 +31,45 @@ const columns = [
         align: 'center',
     },
     {
-        id: 'updateDate',
+        id: 'publishedDate',
         label: 'Дата обновления',
         minWidth: 120,
         align: 'center',
     },
 ];
 
-function createData({ id, source, pageTitle, countShare: { vk, fb, ok }, updateDate }) {
+function createData({ _id, owner, title, share: { vk, fb, ok }, publishedDate }) {
     const vkCount = Number.isInteger(parseInt(vk)) ? parseInt(vk) : 0;
     const okCount = Number.isInteger(parseInt(ok)) ? parseInt(ok) : 0;
     const fbCount = Number.isInteger(parseInt(fb)) ? parseInt(fb) : 0;
 
     const summCount = vkCount + okCount + fbCount;
 
-    return { id, source, pageTitle, vkCount, fbCount, okCount, summCount, updateDate };
+    return { _id, owner, title, vkCount, fbCount, okCount, summCount, publishedDate };
 }
 
-const rows = [
+let rows = [
     createData({
-        id: 1,
-        source: '5eb57bdc552f719aa079326c',
-        pageTitle: 'Суд Красноярска арестовал бизнесмена и политика Анатолия Быкова, подозреваемого в организации заказных убийств',
-        countShare: {
+        _id: 1,
+        owner: '5eb57bdc552f719aa079326c',
+        title: 'Суд Красноярска арестовал бизнесмена и политика Анатолия Быкова, подозреваемого в организации заказных убийств',
+        share: {
             vk: 302,
             fb: 233,
             ok: 32,
         },
-        updateDate: '08.05.2020',
+        publishedDate: '08.05.2020',
     }),
     createData({
-        id: 2,
-        source: '5eb57bdc552f719aa079326c',
-        pageTitle: 'Росстат отчитался о стабильной вторую неделю подряд инфляции',
-        countShare: {
+        _id: 2,
+        owner: '5eb57bdc552f719aa079326c',
+        title: 'Росстат отчитался о стабильной вторую неделю подряд инфляции',
+        share: {
             vk: 637,
             fb: 533,
             ok: 132,
         },
-        updateDate: '08.05.2020',
+        publishedDate: '08.05.2020',
     }),
 ];
 
@@ -78,7 +80,7 @@ const useStyles = makeStyles({
     container: {
         maxHeight: 600,
     },
-    pageTitle: {
+    title: {
         display: 'block',
         maxWidth: 270,
         whiteSpace: 'nowrap',
@@ -87,12 +89,17 @@ const useStyles = makeStyles({
     }
 });
 
-export function ArticllesTable() {
+export let PagesTable = (props) => {
     const classes = useStyles();
+    const { getPagesRequest, isLoading, items } = props;
+
+    useEffect(() => {
+        getPagesRequest()
+    }, [getPagesRequest])
 
     return (
         <Paper variant="outlined" className={classes.root}>
-            <TableContainer className={classes.container}>
+            {!isLoading && <TableContainer className={classes.container}>
                 <Table stickyHeader aria-label="articles table">
                         <TableHead>
                             <TableRow>
@@ -109,14 +116,14 @@ export function ArticllesTable() {
                         </TableHead>
 
                         <TableBody>
-                            { rows.map(row => (
+                            { items.map(item => createData(item)).map(row => (
                                 <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                                     {columns.map(column => {
                                         const value = row[column.id];
                                         return (
                                             <TableCell key={`${column.id}-${row.id}`} align={column.align}>
                                                 { 
-                                                    column.id === 'pageTitle' ? (
+                                                    column.id === 'title' ? (
                                                         <Tooltip title={value}>
                                                             <span className={classes[column.id]}>{ value }</span>
                                                         </Tooltip>
@@ -130,7 +137,11 @@ export function ArticllesTable() {
                             ))}
                         </TableBody>
                 </Table>
-            </TableContainer>
+            </TableContainer> }
         </Paper>
     );
 }
+const mapStateToProps = state => state.pages
+const mapDispatchToProps = { getPagesRequest }
+
+PagesTable = connect(mapStateToProps, mapDispatchToProps)(PagesTable)
