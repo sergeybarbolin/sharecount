@@ -4,13 +4,7 @@ export const getAllSources = state => state.sources.items;
 export const getDisabledItems = state => state.sources.disabledItems;
 export const getLoadingStatus = state => state.sources.isLoading;
 export const getError = state => state.sources.error;
-export const getActiveItems = state => {
-    if (getLoadingStatus(state)) {
-        return null;
-    }
 
-    return getAllSources(state).map(({ _id }) => _id);
-}
 export const getSourcesWidthDisabledStatus = createSelector(
     getAllSources,
     getDisabledItems,
@@ -21,6 +15,12 @@ export const getSourcesWidthDisabledStatus = createSelector(
         }))
     }
 );
+
+export const getActiveItems = createSelector(
+    getSourcesWidthDisabledStatus,
+    items => items.filter(item => !item.disabled).map(item => item._id)
+)
+
 export const getSortedByAlphabetical = createSelector(
     getSourcesWidthDisabledStatus,
     (items) => {
@@ -40,7 +40,6 @@ export const getSortedByDisabled = createSelector(
     (items) => {
         return items.sort(item => {
             if (item.disabled) {
-                console.log(item.disabled);
                 return 1
             } else {
                 return -1

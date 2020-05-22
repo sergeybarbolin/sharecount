@@ -8,8 +8,8 @@ import {
 
 const items = handleActions({
     [getPagesSuccess]: (_state, action) => action.payload,
-    [getPagesRequest]: () => [...Array(20)],
-}, [...Array(20)])
+    [getPagesRequest]: () => [],
+}, [])
 
 const isLoading = handleActions({
     [getPagesRequest]: () => true,

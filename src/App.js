@@ -1,13 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { Navbar } from './components/Navbar';
+import { Navbar } from './components';
 import { Main } from './pages/Main';
 
 const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: theme.palette.background.default,
-        height: '100vh'
+        minHeight: '100vh'
     }
 }));
 

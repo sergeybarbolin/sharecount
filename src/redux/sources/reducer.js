@@ -11,8 +11,8 @@ import {
 
 const items = handleActions({
     [getSourcesSuccess]: (_state, action) => action.payload,
-    [getSourcesRequest]: () => [...Array(10)],
-}, [...Array(10)])
+    [getSourcesRequest]: () => [],
+}, [])
 
 const isLoading = handleActions({
     [getSourcesRequest]: () => true,
