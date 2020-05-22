@@ -5,6 +5,7 @@ import { getAllSources } from './../sources/selectors';
 
 export const getAllPages = state => state.pages.items;
 export const getPagesStatusLoading = state => state.pages.isLoading;
+export const getError = state => state.pages.error;
 export const getPagesWithOwnerData = createSelector(
     getAllPages,
     getAllSources,

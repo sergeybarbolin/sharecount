@@ -17,8 +17,14 @@ const isLoading = handleActions({
     [getPagesFailure]: () => false
 }, true)
 
+const error = handleActions({
+    [getPagesRequest]: () => null,
+    [getPagesSuccess]: () => null,
+    [getPagesFailure]: (_state, action) => action.payload
+}, null)
 
 export default combineReducers({ 
     items,
     isLoading,
+    error
 })
