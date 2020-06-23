@@ -24,8 +24,8 @@ export const SourcesList = (props) => {
     } = props;
 
     return (
-        <Paper variant="outlined">
-            {
+        // <Paper variant="outlined">
+            // {
                 isLoading ? (
                     <List component="div" aria-label="loading"> 
                         {
@@ -94,7 +94,7 @@ export const SourcesList = (props) => {
                         </List>
                     </>
                 )
-            }
-        </Paper>
+            // }
+        // </Paper>
     )
 }

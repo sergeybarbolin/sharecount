@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { format, isToday, isThisWeek, isThisYear, parseISO } from 'date-fns';
+import { format, isToday, isYesterday, isThisWeek, isThisYear, parseISO } from 'date-fns';
 import { ru } from 'date-fns/locale'
 import { getAllSources } from './../sources/selectors';
 
@@ -32,11 +32,13 @@ export const getPagesWithConvertDate = createSelector(
                 return page;
             }
 
-            const date = parseISO(page.publishedDate);
+            const date = parseISO(page.pubDate);
             let formatDate
 
             if (isToday(date)) {
                 formatDate = format(date, 'HH:mm');
+            } else if (isYesterday(date)) {
+                formatDate = format(date, 'вчера в HH:mm');
             } else if (isThisWeek(date)) {
                 formatDate = format(date, 'EEEEEE HH:mm', {
                     locale: ru

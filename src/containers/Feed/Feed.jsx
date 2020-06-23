@@ -14,7 +14,7 @@ export let FeedContainer = props => {
     const { getPagesRequest, isLoading, items, disabledOwners, error } = props;
 
     useEffect(() => {
-        getPagesRequest({ exclude: {key: 'owner', value: disabledOwners} })
+        getPagesRequest({ exclude: disabledOwners })
     }, [getPagesRequest, disabledOwners])
 
     if (error) {

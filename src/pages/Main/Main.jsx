@@ -4,13 +4,16 @@ import { Grid, Container } from '@material-ui/core';
 import { SourcesListContainer, FeedContainer } from '../../containers';
 
 export const Main = () => (
-    <Container>
-        <Grid container spacing={3}>
-            <Grid item xs={3}>
+    <Container maxWidth="xl">
+        <Grid container spacing={2}>
+            <Grid item xs={2}>
                 <SourcesListContainer />
             </Grid>
-            <Grid item xs={9}>
+            <Grid item xs={6}>
                 <FeedContainer />
+            </Grid>
+            <Grid item xs>
+                {/* <SourcesListContainer /> */}
             </Grid>
         </Grid>
     </Container>
